@@ -1,0 +1,20 @@
+{
+  "extends": "react-app",
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "array-bracket-spacing": "warn",
+    "brace-style": "warn",
+    "arrow-spacing": "warn",
+    "callback-return": "warn"
+  },
+  "globals": {
+    "window": true,
+    "document": true,
+    "localStorage": true,
+    "FormData": true,
+    "FileReader": true,
+    "Blob": true,
+    "navigator": true
+  }
+}

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from '@reach/router';
 import './App.css';
-import API from './API/api';
+import { instance } from './API/api';
 import NewsCards from './components/NewsCards';
-import { Container, Grid, Colu } from 'semantic-ui-react';
+import { Container, Grid } from 'semantic-ui-react';
 import HeaderComponent from './components/HeaderComponent';
 import LoaderComponent from './components/Loader/LoaderComponent';
 import SearchComponent from './components/Search/SearchComponent';
@@ -22,7 +23,7 @@ function App() {
 
 	useEffect(() => {
 		getHeadlines('in');
-		getNewsSources();
+		// getNewsSources();
 	}, []);
 
 	const handleSearchChange = (e, { value }) => {
@@ -47,13 +48,13 @@ function App() {
 	};
 
 	const getHeadlines = function(value) {
-		API.get(`top-headlines?country=${value}`).then(res => {
+		instance.get(`top-headlines?country=${value}`).then(res => {
 			setData({ ...data, articles: res.articles, isArticleVisible: true });
 		});
 	};
 
 	const getNewsSources = function() {
-		API.get('sources').then(res => {
+		instance.get('sources').then(res => {
 			sources = res.sources;
 			console.log(sources);
 		});
@@ -62,9 +63,9 @@ function App() {
 	const searchOnEnter = function(event) {
 		if (event.keyCode === 13) {
 			if (data.value) {
-				API.get(`everything?q=${data.value}`).then(res =>
-					updateData('result', res.articles)
-				);
+				instance
+					.get(`everything?q=${data.value}`)
+					.then(res => updateData('result', res.articles));
 			} else {
 				updateData('result', []);
 			}
@@ -95,6 +96,11 @@ function App() {
 							countries={countries}
 							countryChange={countryChange}
 						/>
+					</Grid.Column>
+					<Grid.Column>
+						<button className='ui secondary button'>
+							<Link to='sources'>Sources</Link>
+						</button>
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>

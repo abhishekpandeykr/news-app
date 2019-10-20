@@ -7,13 +7,7 @@ import 'semantic-ui-css/semantic.min.css';
 import { Router, Link } from '@reach/router';
 import SourcesList from './components/Sources/SourcesList';
 
-ReactDOM.render(
-	<Router>
-		<App path='/' />
-		<SourcesList path='sources' />
-	</Router>,
-	document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

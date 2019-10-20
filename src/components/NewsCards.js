@@ -11,7 +11,7 @@ export default function NewsCards(props) {
 				<Grid.Row>
 					{props.articles.length > 0
 						? props.articles.map((article, idx) => (
-								<Grid.Column width={5}>
+								<Grid.Column width={5} key={idx}>
 									{/* <div className='ui card' key={idx}> */}
 									{/* <div className='column'> */}
 									<Card
